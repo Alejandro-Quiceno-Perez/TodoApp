@@ -42,23 +42,20 @@ const TodoApp = () => {
         setTodo([...tempTodos]);
     }
 
-    const handleCheckboxChange = (id, status) => {
-        const temp = [...todo];
-        const item = temp.find((item) => item.id === id);
-        item.completed = status;
-
-        setTodo([...temp]);
-    }
 
     return (
-        <div className='todoContainer'>
+        <div className='my-4 w-100 h-100'>
 
-            <form className='todoCreateForm' onSubmit={handleSubmit}>
-                <input className='todoInput' value={title} onChange={handleChange} />
-                <input type="submit" value="Crear Tarea" className='buttonCreate' onClick={handleSubmit} />
+            <form className='mb-3' onSubmit={handleSubmit}>
+                <label for="inputTarea" className='form-label'>Ingresa tu tarea aqui!</label>
+                
+                <div className="d-flex gap-2">
+                    <input id="inputTarea" className='form-control' value={title} onChange={handleChange} />
+                    <input type="submit" value="Crear Tarea" className='btn btn-primary' onClick={handleSubmit} />
+                </div>
             </form>
 
-            <div className="todosContainer">
+            <div className="w-100 h-100">
                 {
                     todo.map((item) => (
                         <Todo
@@ -66,7 +63,6 @@ const TodoApp = () => {
                             item={item}
                             onUpdate={handleUpdate}
                             onDelete={handleDelete}
-                            onComplete={handleCheckboxChange}
                         />
                     ))
                 }

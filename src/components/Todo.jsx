@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Todo = ({ item, onUpdate, onDelete, onComplete }) => {
+export const Todo = ({ item, onUpdate, onDelete }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [value, setValue] = useState(item.title ?? "");
 
@@ -19,38 +19,36 @@ export const Todo = ({ item, onUpdate, onDelete, onComplete }) => {
         setIsEdit(false);
     }
 
-    const handleCheckBoxChange = (e) => {
-        onComplete(item.id, e.target.checked);
-    }
+
 
 
     return (
-        <div className="todo">
+        <div className="bg-white p-3 mb-2 rounded rounded-2">
             {
                 isEdit ? (
                     <form onSubmit={handleSubmit}>
-                        <input type="text"
-                            className='todoInput'
-                            value={value}
-                            onChange={handleChange}
-                        />
+                        <label className='form-label fw-bold'>Editar tarea:</label>
+                        <div className="d-flex gap-2">
+                            <input type="text"
+                                className='form-control'
+                                value={value}
+                                onChange={handleChange}
+                            />
+                            <button className='btn btn-outline-success fw-bold' onClick={handleClickUpdateTodo}>Update</button>
+                        </div>
 
-                        <button className='btn-update' onClick={handleClickUpdateTodo}>Update</button>
                     </form>
                 ) : (
-                    <div className='todoInfo'>
-                        <input type={"checkbox"}
-                            onChange={handleCheckBoxChange}
-                            checked={item.completed}
-                        />
+                    <form className='form'>
+                        <div className="d-flex gap-2 justify-content-between align-items-center">
+                            <label className='form-label mt-2 text-center w-100'>
+                                {item.title}
+                            </label>
+                            <button className='btn btn-info' onClick={() => setIsEdit(true)}>Edit</button>
 
-                        <span className='todoTitle'>
-                            {item.title}
-                        </span>
-                        <button className='btn-edit' onClick={() => setIsEdit(true)}>Edit</button>
-
-                        <button className='btn-delete' onClick={() => onDelete(item.id)}>Delete</button>
-                    </div>
+                            <button className='btn btn-danger' onClick={() => onDelete(item.id)}>Delete</button>
+                        </div>
+                    </form>
                 )
             }
         </div>

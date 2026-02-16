@@ -6,10 +6,10 @@ import './App.css'
 function App() {
 
   return (
-    <>
-    <h1 className='text-center my-4'>Lista de Tareas</h1>
+    <div className='container bg-light p-4 mt-4 w-100 h-100 rounded rounded-5'>
+    <h1 className='text-center text-primary fw-bold'>Lista de Tareas</h1>
       <TodoApp />
-    </>
+    </div>
   )
 }
 
