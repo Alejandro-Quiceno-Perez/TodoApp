@@ -7,12 +7,12 @@ export const Todo = ({ item, onUpdate, onDelete, onComplete }) => {
     const handleChange = (e) => {
         setValue(e.target.value)
     }
-    
-    const handleClickUpdateTodo = () =>{
+
+    const handleClickUpdateTodo = () => {
         onUpdate(item.id, value);
         setIsEdit(false);
     }
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         onUpdate(item.id, value)
@@ -23,30 +23,35 @@ export const Todo = ({ item, onUpdate, onDelete, onComplete }) => {
         onComplete(item.id, e.target.checked);
     }
 
-    const FormEdit = () => {
-        
-        return (
-            <form className='todoUpdateForm' onSubmit={handleSubmit}>
-                <input type="text" className='todoInput' onChange={handleChange} value={newValue} />
-                <button className='button' onClick={handleClickUpdateTodo}>Update</button>
-            </form>
-        )
-    }
-
-    const TodoElement = () => {
-        return (
-            <div className='todoInfo'>
-                {item.title}
-                <button onClick={e => setIsEdit(true)}>Edit</button>
-                <button onClick={(e) => onDelete}>Delete</button>
-            </div>
-        )
-    }
 
     return (
         <div className="todo">
             {
-                isEdit ? <FormEdit /> : <TodoElement />
+                isEdit ? (
+                    <form onSubmit={handleSubmit}>
+                        <input type="text"
+                            className='todoInput'
+                            value={value}
+                            onChange={handleChange}
+                        />
+
+                        <button className='btn-update' onClick={handleClickUpdateTodo}>Update</button>
+                    </form>
+                ) : (
+                    <div className='todoInfo'>
+                        <input type={"checkbox"}
+                            onChange={handleCheckBoxChange}
+                            checked={item.completed}
+                        />
+
+                        <span className='todoTitle'>
+                            {item.title}
+                        </span>
+                        <button className='btn-edit' onClick={() => setIsEdit(true)}>Edit</button>
+
+                        <button className='btn-delete' onClick={() => onDelete(item.id)}>Delete</button>
+                    </div>
+                )
             }
         </div>
     )

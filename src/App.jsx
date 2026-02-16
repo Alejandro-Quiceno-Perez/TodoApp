@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import TodoApp from './components/TodoApp'
+import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
+    <h1 className='text-center my-4'>Lista de Tareas</h1>
       <TodoApp />
     </>
   )
