@@ -23,7 +23,7 @@ export const Todo = ({ item, onUpdate, onDelete }) => {
 
 
     return (
-        <div className="bg-white p-3 mb-2 rounded rounded-2">
+        <div className="bg-white  mb-2 rounded rounded-2">
             {
                 isEdit ? (
                     <form onSubmit={handleSubmit}>
@@ -40,8 +40,8 @@ export const Todo = ({ item, onUpdate, onDelete }) => {
                     </form>
                 ) : (
                     <form className='form'>
-                        <div className="d-flex gap-2 justify-content-between align-items-center">
-                            <label className='form-label mt-2 text-center w-100'>
+                        <div className="d-flex gap-2">
+                            <label className='form-label mt-2 ms-2 w-100'>
                                 {item.title}
                             </label>
                             <button className='btn btn-info' onClick={() => setIsEdit(true)}>Edit</button>
